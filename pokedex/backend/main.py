@@ -8,6 +8,9 @@ app = FastAPI(title="Pokedex API", version="1.0.0")
 
 POKEAPI_URL = "https://pokeapi.co/api/v2/pokemon"
 
+if os.path.isdir("frontend/dist"):
+    app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="frontend")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
